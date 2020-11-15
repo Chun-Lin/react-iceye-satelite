@@ -9,10 +9,12 @@ import {
 } from 'victory'
 import dayjs from 'dayjs'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { useDispatch } from 'react-redux'
 
 import api from 'api'
 import { useModal } from 'hooks'
 import UpdateUserModal from 'components/UpdateUserModal'
+import { logout } from 'redux/user/userRedux'
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -72,6 +74,8 @@ function Main() {
   const [acquisitions, setAcqusitions] = useState([])
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const getSatelliteAcquisitions = async () => {
       try {
@@ -109,6 +113,12 @@ function Main() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const logoutClickHandler = async () => {
+    await localStorage.removeItem('userId')
+    await localStorage.removeItem('accessToken')
+    await dispatch(logout())
+  }
+
   return (
     <MainWrapper>
       <Header>
@@ -120,7 +130,7 @@ function Main() {
         {isMenuOpen ? (
           <DropdownMenuWrapper>
             <MenuList onClick={updateUserHandler}>Update User</MenuList>
-            <MenuList>Logout</MenuList>
+            <MenuList onClick={logoutClickHandler}>Logout</MenuList>
           </DropdownMenuWrapper>
         ) : null}
 
