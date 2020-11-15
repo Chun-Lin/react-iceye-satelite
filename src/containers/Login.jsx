@@ -6,6 +6,8 @@ import * as Yup from 'yup'
 import Input from 'components/shared/Input'
 import Button from 'components/shared/Button'
 import api from 'api'
+import { useDispatch } from 'react-redux'
+import { login } from 'redux/user/userRedux'
 
 const LoginContainer = styled.div`
   width: 100vw;
@@ -72,6 +74,8 @@ const ErrorMsg = styled.div`
 `
 
 function Login() {
+  const dispatch = useDispatch()
+
   return (
     <LoginContainer>
       <LoginBox>
@@ -97,6 +101,9 @@ function Login() {
               })
 
               const token = data.data.access
+              await localStorage.setItem('accessToken', token)
+              await localStorage.setItem('userId', values.name)
+              dispatch(login({ userId: values.name }))
             } catch (err) {
               console.log(err.message)
             }

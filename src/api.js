@@ -10,7 +10,7 @@ const request = ({
   contentType = 'application/json',
 }) => {
   const url = fullUrl || API_ROOT + endpoint
-  const token = localStorage.getItem('AUTH_TOKEN')
+  const token = localStorage.getItem('accessToken')
   const headers = {
     'Content-Type': contentType,
   }
@@ -40,14 +40,16 @@ const getToken = ({ userId, password }) => {
   })
 }
 
-const getUserId = ({ userId }) => {
+const getUserInfo = () => {
+  const userId = localStorage.getItem('userId')
   return request({
     method: 'get',
     endpoint: `/users/${userId}`,
   })
 }
 
-const updateUserInfo = ({ userId, userName, password }) => {
+const updateUserInfo = ({ userName, password }) => {
+  const userId = localStorage.getItem('userId')
   return request({
     method: 'post',
     endpoint: `/users/${userId}`,
@@ -71,7 +73,7 @@ const getAcquisitions = () => {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getToken,
-  getUserId,
+  getUserInfo,
   updateUserInfo,
   getUsers,
   getAcquisitions,
