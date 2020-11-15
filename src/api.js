@@ -48,11 +48,15 @@ const getUserInfo = () => {
   })
 }
 
-const updateUserInfo = ({ userName, password }) => {
+const updateUserInfo = ({ name, password }) => {
   const userId = localStorage.getItem('userId')
   return request({
     method: 'post',
     endpoint: `/users/${userId}`,
+    data: JSON.stringify({
+      name,
+      password,
+    }),
   })
 }
 

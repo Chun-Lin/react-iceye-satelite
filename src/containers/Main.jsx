@@ -11,6 +11,8 @@ import dayjs from 'dayjs'
 import { GiHamburgerMenu } from 'react-icons/gi'
 
 import api from 'api'
+import { useModal } from 'hooks'
+import UpdateUserModal from 'components/UpdateUserModal'
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -93,6 +95,20 @@ function Main() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const {
+    showModal: showUpdateModal,
+    closeModal: closeUpdateModal,
+    renderModal: renderUpdateModal,
+  } = useModal({
+    isCoverRemovable: true,
+    isCoverShown: true,
+  })
+
+  const updateUserHandler = () => {
+    showUpdateModal()
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <MainWrapper>
       <Header>
@@ -103,7 +119,7 @@ function Main() {
       <ChartWrapper>
         {isMenuOpen ? (
           <DropdownMenuWrapper>
-            <MenuList>Update User</MenuList>
+            <MenuList onClick={updateUserHandler}>Update User</MenuList>
             <MenuList>Logout</MenuList>
           </DropdownMenuWrapper>
         ) : null}
@@ -128,6 +144,7 @@ function Main() {
           </VictoryChart>
         ) : null}
       </ChartWrapper>
+      {renderUpdateModal(<UpdateUserModal onClose={closeUpdateModal} />)}
     </MainWrapper>
   )
 }
