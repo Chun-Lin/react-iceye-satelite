@@ -64,23 +64,25 @@ function Main() {
         <div>icon</div>
       </Header>
       <ChartWrapper>
-        <VictoryChart
-          theme={VictoryTheme.material}
-          width={600}
-          height={300}
-          containerComponent={
-            <VictoryZoomContainer preserveAspectRatio="none" />
-          }
-        >
-          <VictoryBar data={acquisitions} x="timestamp" y="sites" />
-          <VictoryAxis
-            tickValues={generateTickValues(acquisitions)}
-            tickFormat={timeStamp =>
-              `${dayjs.unix(timeStamp).format('MMM[.]DD hA')}`
+        {acquisitions.length > 0 ? (
+          <VictoryChart
+            theme={VictoryTheme.material}
+            width={600}
+            height={300}
+            containerComponent={
+              <VictoryZoomContainer preserveAspectRatio="none" />
             }
-          />
-          <VictoryAxis dependentAxis />
-        </VictoryChart>
+          >
+            <VictoryBar data={acquisitions} x="timestamp" y="sites" />
+            <VictoryAxis
+              tickValues={generateTickValues(acquisitions)}
+              tickFormat={timeStamp =>
+                `${dayjs.unix(timeStamp).format('MMM[.]DD hA')}`
+              }
+            />
+            <VictoryAxis dependentAxis />
+          </VictoryChart>
+        ) : null}
       </ChartWrapper>
     </MainWrapper>
   )
