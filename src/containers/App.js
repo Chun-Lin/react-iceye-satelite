@@ -9,6 +9,7 @@ import {
   selectUsers,
 } from 'redux/user/userRedux'
 import api from 'api'
+import Main from 'containers/Main'
 
 function App() {
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ function App() {
     users.length > 0 || user ? setAuth(true) : setAuth(false)
   }, [users.length, user])
 
-  return <div className="App">{auth ? <div>Main Page</div> : <Login />}</div>
+  return <div className="App">{auth ? <Main /> : <Login />}</div>
 }
 
 export default App
