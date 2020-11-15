@@ -18,6 +18,17 @@ const UpdateUserModalWrapper = styled.div`
   border-radius: 10px;
   background-color: white;
   box-shadow: 0px 2px 5px 3px rgba(0, 0, 0, 0.25);
+
+  @media screen and (max-width: 600px){
+    width: 90vw;
+    height: 50vh;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 900px){
+    width: 70vw;
+    height: 50vh;
+  }
+
 `
 
 const ModalHeader = styled.div`
