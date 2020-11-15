@@ -85,10 +85,6 @@ const ErrorMsg = styled.div`
 function UpdateUserModal({ onClose }) {
   const dispatch = useDispatch()
 
-  const updateClickHandler = submitForm => {
-    submitForm().then(res => console.log(res))
-  }
-
   return (
     <UpdateUserModalWrapper>
       <ModalHeader>
@@ -180,7 +176,7 @@ function UpdateUserModal({ onClose }) {
                 border="none"
                 borderRadius="100px"
                 disabled={errors?.name || errors?.password || isSubmitting}
-                onClick={() => updateClickHandler(submitForm)}
+                onClick={() => submitForm()}
               >
                 UPDATE
               </Button>
