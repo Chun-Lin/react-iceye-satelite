@@ -36,6 +36,12 @@ const Header = styled.header`
   align-items: center;
   padding: 0 10px;
   background-color: #71b17f;
+
+  img {
+    width: 20%;
+    height: 100%;
+    object-fit: contain;
+  }
 `
 
 const ChartWrapper = styled.div`
@@ -122,8 +128,11 @@ function Main() {
   return (
     <MainWrapper>
       <Header>
-        <div>Title</div>
-        <GiHamburgerMenu size="40px" onClick={menuHandler} />
+        <img
+          src="https://www.iceye.com/hubfs/img/media/mediakits/logos/png-iceye-logo-white.png"
+          alt="ICEYE"
+        />
+        <GiHamburgerMenu size="40px" color="#FEFEFE" onClick={menuHandler} />
       </Header>
 
       <ChartWrapper>
