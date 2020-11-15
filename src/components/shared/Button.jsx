@@ -8,9 +8,15 @@ const Button = styled.button`
   margin: ${props => props.margin};
   border-radius: ${props => props.borderRadius};
   border: ${props => props.border};
+  color: ${props => props.color};
   background-color: ${props => props.backgroundColor};
   outline: none;
   cursor: pointer;
+
+  &:disabled{
+    background-color: #D3D3D3;
+  }
+
 `
 
 Button.propTypes = {
