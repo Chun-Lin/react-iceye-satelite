@@ -8,6 +8,7 @@ import {
   VictoryZoomContainer,
 } from 'victory'
 import dayjs from 'dayjs'
+import { GiHamburgerMenu } from 'react-icons/gi'
 
 import api from 'api'
 
@@ -23,20 +24,51 @@ const MainWrapper = styled.div`
 `
 
 const Header = styled.header`
+  position: relative;
   width: 100%;
   height: 10%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 10px;
   background-color: #71b17f;
 `
 
 const ChartWrapper = styled.div`
   flex: 1;
+  position: relative;
+`
+
+const DropdownMenuWrapper = styled.div`
+  position: absolute;
+  width: 30%;
+  padding: 10px 0;
+  top: 0px;
+  right: 0;
+  border-radius: 5px;
+  z-index: 500;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+  @media screen and (min-width: 600px) and (max-width: 900px) {
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 50%;
+  }
+`
+
+const MenuList = styled.div`
+  padding: 12px 16px;
+
+  &:hover {
+    background-color: lightgrey;
+  }
 `
 
 function Main() {
   const [acquisitions, setAcqusitions] = useState([])
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     const getSatelliteAcquisitions = async () => {
@@ -57,13 +89,25 @@ function Main() {
     )
   }
 
+  const menuHandler = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
   return (
     <MainWrapper>
       <Header>
         <div>Title</div>
-        <div>icon</div>
+        <GiHamburgerMenu size="40px" onClick={menuHandler} />
       </Header>
+
       <ChartWrapper>
+        {isMenuOpen ? (
+          <DropdownMenuWrapper>
+            <MenuList>Update User</MenuList>
+            <MenuList>Logout</MenuList>
+          </DropdownMenuWrapper>
+        ) : null}
+
         {acquisitions.length > 0 ? (
           <VictoryChart
             theme={VictoryTheme.material}
