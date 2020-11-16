@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {
-  VictoryBar,
-  VictoryChart,
-  VictoryAxis,
-  VictoryTheme,
-  VictoryZoomContainer,
-} from 'victory'
-import dayjs from 'dayjs'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import { useDispatch } from 'react-redux'
 
 import api from 'api'
 import { useModal } from 'hooks'
 import UpdateUserModal from 'components/UpdateUserModal'
 import { logout } from 'redux/user/userRedux'
+import Chart from 'components/Chart'
+import Header from 'components/Header'
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -25,23 +18,6 @@ const MainWrapper = styled.div`
   align-tiems: center;
   background-color: #fefefe;
   overflow: auto;
-`
-
-const Header = styled.header`
-  position: relative;
-  width: 100%;
-  height: 10%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  background-color: #71b17f;
-
-  img {
-    width: 20%;
-    height: 100%;
-    object-fit: contain;
-  }
 `
 
 const ChartWrapper = styled.div`
@@ -95,16 +71,6 @@ function Main() {
     getSatelliteAcquisitions()
   }, [])
 
-  const generateTickValues = acquisitions => {
-    return acquisitions.filter(
-      acquisition => acquisition.timeStamp % 500000 === 0
-    )
-  }
-
-  const menuHandler = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
   const {
     showModal: showUpdateModal,
     closeModal: closeUpdateModal,
@@ -127,14 +93,7 @@ function Main() {
 
   return (
     <MainWrapper>
-      <Header>
-        <img
-          src="https://www.iceye.com/hubfs/img/media/mediakits/logos/png-iceye-logo-white.png"
-          alt="ICEYE"
-        />
-        <GiHamburgerMenu size="40px" color="#FEFEFE" onClick={menuHandler} />
-      </Header>
-
+      <Header setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <ChartWrapper>
         {isMenuOpen ? (
           <DropdownMenuWrapper>
@@ -142,27 +101,9 @@ function Main() {
             <MenuList onClick={logoutClickHandler}>Logout</MenuList>
           </DropdownMenuWrapper>
         ) : null}
-
-        {acquisitions.length > 0 ? (
-          <VictoryChart
-            theme={VictoryTheme.material}
-            width={600}
-            height={300}
-            containerComponent={
-              <VictoryZoomContainer preserveAspectRatio="none" />
-            }
-          >
-            <VictoryBar data={acquisitions} x="timestamp" y="sites" />
-            <VictoryAxis
-              tickValues={generateTickValues(acquisitions)}
-              tickFormat={timeStamp =>
-                `${dayjs.unix(timeStamp).format('MMM[.]DD hA')}`
-              }
-            />
-            <VictoryAxis dependentAxis />
-          </VictoryChart>
-        ) : null}
+        <Chart data={acquisitions} />
       </ChartWrapper>
+
       {renderUpdateModal(<UpdateUserModal onClose={closeUpdateModal} />)}
     </MainWrapper>
   )
