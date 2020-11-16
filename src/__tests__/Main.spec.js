@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { render, wait } from 'test-utils'
 
 import api from 'api'
-import Main from 'containers/Main'
+import Main from 'components/Main'
 
 jest.mock('api')
 

@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event'
 
 import { render, wait } from 'test-utils'
 import api from 'api'
-import Login from 'containers/Login'
+import Login from 'components/Login'
 
 jest.mock('api')
 
