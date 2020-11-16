@@ -19,16 +19,15 @@ const UpdateUserModalWrapper = styled.div`
   background-color: white;
   box-shadow: 0px 2px 5px 3px rgba(0, 0, 0, 0.25);
 
-  @media screen and (max-width: 600px){
+  @media screen and (max-width: 600px) {
     width: 90vw;
-    height: 50vh;
+    height: 80vh;
   }
 
-  @media screen and (min-width: 600px) and (max-width: 900px){
+  @media screen and (min-width: 600px) and (max-width: 900px) {
     width: 70vw;
     height: 50vh;
   }
-
 `
 
 const ModalHeader = styled.div`
@@ -51,20 +50,8 @@ const ModalContent = styled.div`
   font-size: 20px;
 `
 
-const ModalFooter = styled.div`
-  height: 20%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 10px 10px;
-`
-
 const StyledForm = styled(Form)`
   width: 100%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
 `
 
 const FieldWrapper = styled.div`
@@ -176,8 +163,6 @@ function UpdateUserModal({ onClose }) {
                   </FieldWrapper>
                 </div>
               </StyledForm>
-            </ModalContent>
-            <ModalFooter>
               <Button
                 type="submit"
                 width="100%"
@@ -191,7 +176,7 @@ function UpdateUserModal({ onClose }) {
               >
                 UPDATE
               </Button>
-            </ModalFooter>
+            </ModalContent>
           </>
         )}
       </Formik>

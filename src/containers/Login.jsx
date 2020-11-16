@@ -19,7 +19,7 @@ const LoginContainer = styled.div`
 `
 
 const LoginBox = styled.div`
-  width: 70%;
+  width: 50%;
   height: 50%;
   display: flex;
   flex-direction: column;
