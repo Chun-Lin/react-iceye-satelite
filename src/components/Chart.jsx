@@ -5,6 +5,7 @@ import {
   VictoryChart,
   VictoryAxis,
   VictoryTheme,
+  VictoryLabel,
   createContainer,
 } from 'victory'
 import dayjs from 'dayjs'
@@ -33,6 +34,12 @@ function Chart({ data }) {
             />
           }
         >
+          <VictoryLabel
+            text="Acquisitions"
+            x={300}
+            y={30}
+            textAnchor="middle"
+          />
           <VictoryBar data={data} x="timestamp" y="sites" />
           <VictoryAxis
             tickValues={generateTickValues(data)}

@@ -15,7 +15,6 @@ const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-tiems: center;
   background-color: #fefefe;
   overflow: auto;
 `
