@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -73,8 +73,14 @@ const ErrorMsg = styled.div`
   text-align: left;
 `
 
+const UnauthorizedMsg = styled.div`
+  color: red;
+`
+
 function Login() {
   const dispatch = useDispatch()
+
+  const [authFailMsg, setAuthFailMsg] = useState('')
 
   return (
     <LoginContainer>
@@ -105,7 +111,7 @@ function Login() {
               await localStorage.setItem('userId', values.name)
               dispatch(login({ userId: values.name }))
             } catch (err) {
-              console.log(err.message)
+              setAuthFailMsg(err.response.data)
             }
           }}
         >
@@ -153,6 +159,7 @@ function Login() {
                   ) : null}
                 </FieldWrapper>
               </div>
+              <UnauthorizedMsg>{authFailMsg}</UnauthorizedMsg>
               <Button
                 type="submit"
                 width="100%"
