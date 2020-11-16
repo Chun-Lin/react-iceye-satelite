@@ -31,7 +31,12 @@ function Header({ setIsMenuOpen, isMenuOpen }) {
         src="https://www.iceye.com/hubfs/img/media/mediakits/logos/png-iceye-logo-white.png"
         alt="ICEYE"
       />
-      <GiHamburgerMenu size="40px" color="#FEFEFE" onClick={menuHandler} />
+      <GiHamburgerMenu
+        size="40px"
+        color="#FEFEFE"
+        onClick={menuHandler}
+        data-testid="iconHamburger"
+      />
     </HeaderWrapper>
   )
 }

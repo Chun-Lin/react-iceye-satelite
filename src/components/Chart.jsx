@@ -25,7 +25,6 @@ function Chart({ data }) {
           height={300}
           containerComponent={
             <VictoryZoomVoronoiContainer
-              preserveAspectRatio="none"
               labels={({ datum }) =>
                 `${datum.sites} sites, ${dayjs
                   .unix(datum.timestamp)

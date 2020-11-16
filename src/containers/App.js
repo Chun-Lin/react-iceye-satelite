@@ -2,13 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Login from 'containers/Login'
-import {
-  selectUser,
-  fetchUserInfo,
-  fetchUsers,
-  selectUsers,
-} from 'redux/user/userRedux'
-import api from 'api'
+import { selectUser, fetchUsers, selectUsers } from 'redux/user/userRedux'
 import Main from 'containers/Main'
 
 function App() {

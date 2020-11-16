@@ -87,7 +87,7 @@ function UpdateUserModal({ onClose }) {
     <UpdateUserModalWrapper>
       <ModalHeader>
         <span>Update User Info</span>
-        <GrClose onClick={onClose} />
+        <GrClose onClick={onClose} data-testid="closeBtn" />
       </ModalHeader>
       <Formik
         initialValues={{
