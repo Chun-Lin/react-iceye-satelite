@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Login from 'components/Login'
-import { selectUser, fetchUsers, selectUsers } from 'redux/user/userRedux'
+import { selectUser, selectUsers, allUsers, logout } from 'redux/user/userRedux'
 import Main from 'components/Main'
+import api from 'api'
 
 function App() {
   const dispatch = useDispatch()
@@ -12,11 +13,16 @@ function App() {
   const user = useSelector(selectUser)
 
   useEffect(() => {
-    const confirmAuth = async () => {
-      dispatch(fetchUsers())
+    const getUsersFunc = async () => {
+      try {
+        const res = await api.getUsers()
+        dispatch(allUsers(res.data))
+      } catch (err) {
+        dispatch(logout())
+      }
     }
 
-    confirmAuth()
+    getUsersFunc()
   }, [dispatch])
 
   useEffect(() => {
