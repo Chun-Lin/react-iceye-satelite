@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, lazy, Suspense } from 'react'
 import styled from 'styled-components'
 import { useDispatch } from 'react-redux'
 
@@ -6,8 +6,10 @@ import api from 'api'
 import { useModal } from 'hooks'
 import UpdateUserModal from 'components/UpdateUserModal'
 import { logout } from 'redux/user/userRedux'
-import Chart from 'components/Chart'
+
 import Header from 'components/Header'
+
+const Chart = lazy(() => import('components/Chart'))
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -100,7 +102,9 @@ function Main() {
             <MenuList onClick={logoutClickHandler}>Logout</MenuList>
           </DropdownMenuWrapper>
         ) : null}
-        <Chart data={acquisitions} />
+        <Suspense fallback={<div></div>}>
+          <Chart data={acquisitions} />
+        </Suspense>
       </ChartWrapper>
 
       {renderUpdateModal(<UpdateUserModal onClose={closeUpdateModal} />)}
