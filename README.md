@@ -1,6 +1,10 @@
 # React ICEYE Satelite
 
 
+## Set up environment
+You can set up your local **ip** and **port** to `.env.development`
+
+
 ## Development
 ```bash
 $ yarn
