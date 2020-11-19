@@ -31,9 +31,6 @@ $ yarn run styleguide
 # Listening at http://localhost:6060 with the default
 ```
 
-## Flow Chart
-![Flowchart](./images/flowchart.png)
-
 ## Data Flow Diagram
 ![data-flow-diagram](./images/data-flow-diagram.png)
 
